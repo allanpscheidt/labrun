@@ -51,6 +51,7 @@ function create() {
     player = this.physics.add.sprite(100, 450, 'player');
     player.setCollideWorldBounds(true);
 
+    this.input.on('pointerdown', jump, this);
     cursors = this.input.keyboard.createCursorKeys();
 
     enemies = this.physics.add.group();
@@ -69,9 +70,8 @@ function update(time) {
 
     ground.tilePositionX += 5;
 
-    if (cursors.space.isDown && player.body.touching.down) {
-        player.setVelocityY(-600);
-        player.setTexture('playerJump');
+    if ((cursors.space.isDown || this.input.activePointer.isDown) && player.body.touching.down) {
+        jump();
     }
 
     if (player.body.touching.down) {
@@ -166,6 +166,13 @@ function spawnSpecialEnemy(scene) {
     specialEnemy.points = -score;
     specialEnemy.setScale(0.1); // Ajuste a escala para reduzir a altura
     enemies.add(specialEnemy);
+}
+
+function jump() {
+    if (player.body.touching.down) {
+        player.setVelocityY(-600);
+        player.setTexture('playerJump');
+    }
 }
 
 function hitEnemy(player, enemy) {
