@@ -33,16 +33,16 @@ let nextSpecialEnemyTime = 0;
 
 function preload() {
     this.load.image('ground', 'assets/ground.png');
-    this.load.image('player', 'assets/player.png');
-    this.load.image('playerJump', 'assets/playerJump.png');
-    this.load.image('greenSquare', 'assets/enemy_1.png');
-    this.load.image('blueSquare', 'assets/enemy_2.png');
-    this.load.image('redSquare', 'assets/enemy_3.png');
-    this.load.image('yellowSquare', 'assets/enemy_4.png');
-    this.load.image('blackSquare', 'assets/enemy_5.png');
-    this.load.image('redCircle', 'assets/b_2.png');
-    this.load.image('blueCircle', 'assets/b_3.png');
-    this.load.image('blackCircle', 'assets/b_4.png');
+    this.load.image('player', 'assets/student.png');
+    this.load.image('playerJump', 'assets/studentJump.png');
+    this.load.image('greenBacteria', 'assets/enemy_1.png'); // E. coli (verde)
+    this.load.image('blueBacteria', 'assets/enemy_2.png'); // Salmonella (azul)
+    this.load.image('redBacteria', 'assets/enemy_3.png'); // Staphylococcus aureus (vermelho)
+    this.load.image('yellowBacteria', 'assets/enemy_4.png'); // Bacillus cereus (amarelo)
+    this.load.image('blackVirus', 'assets/enemy_5.png'); // Vírus perigoso (preto)
+    this.load.image('redCircle', 'assets/b_2.png'); // Lactobacillus (círculo vermelho)
+    this.load.image('blueCircle', 'assets/b_3.png'); // Bifidobacterium (círculo azul)
+    this.load.image('blackCircle', 'assets/b_4.png'); // Saccharomyces (círculo preto)
 }
 
 function create() {
@@ -117,19 +117,19 @@ function spawnEnemy(scene) {
     let enemy;
     switch (enemyType) {
         case 1:
-            enemy = scene.physics.add.sprite(800, 520, 'greenSquare');
+            enemy = scene.physics.add.sprite(800, 520, 'greenBacteria'); // E. coli
             enemy.points = -5;
             break;
         case 2:
-            enemy = scene.physics.add.sprite(800, 520, 'blueSquare');
+            enemy = scene.physics.add.sprite(800, 520, 'blueBacteria'); // Salmonella
             enemy.points = -10;
             break;
         case 3:
-            enemy = scene.physics.add.sprite(800, 520, 'redSquare');
-            enemy.points = -10;
+            enemy = scene.physics.add.sprite(800, 520, 'redBacteria'); // Staphylococcus aureus
+            enemy.points = -20;
             break;
         case 4:
-            enemy = scene.physics.add.sprite(800, 520, 'yellowSquare');
+            enemy = scene.physics.add.sprite(800, 520, 'yellowBacteria'); // Bacillus cereus
             enemy.points = -50;
             break;
     }
@@ -142,15 +142,15 @@ function spawnBonus(scene) {
     let bonus;
     switch (bonusType) {
         case 1:
-            bonus = scene.physics.add.sprite(800, 520, 'redCircle');
+            bonus = scene.physics.add.sprite(800, 520, 'redCircle'); // Lactobacillus
             bonus.points = 10;
             break;
         case 2:
-            bonus = scene.physics.add.sprite(800, 520, 'blueCircle');
+            bonus = scene.physics.add.sprite(800, 520, 'blueCircle'); // Bifidobacterium
             bonus.points = 30;
             break;
         case 3:
-            bonus = scene.physics.add.sprite(800, 520, 'blackCircle');
+            bonus = scene.physics.add.sprite(800, 520, 'blackCircle'); // Saccharomyces
             bonus.points = 50;
             break;
     }
@@ -159,7 +159,7 @@ function spawnBonus(scene) {
 }
 
 function spawnSpecialEnemy(scene) {
-    let specialEnemy = scene.physics.add.sprite(800, 520, 'blackSquare');
+    let specialEnemy = scene.physics.add.sprite(800, 520, 'blackVirus'); // Vírus perigoso
     specialEnemy.setVelocityX(-200);
     specialEnemy.points = -score;
     enemies.add(specialEnemy);
@@ -168,7 +168,7 @@ function spawnSpecialEnemy(scene) {
 function hitEnemy(player, enemy) {
     score += enemy.points;
     enemy.destroy();
-    if (enemy.texture.key === 'blackSquare') {
+    if (enemy.texture.key === 'blackVirus') {
         endGame(this);
     }
 }
