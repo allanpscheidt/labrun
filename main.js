@@ -134,6 +134,7 @@ function spawnEnemy(scene) {
             break;
     }
     enemy.setVelocityX(-200);
+    enemy.setScale(0.1); // Ajuste a escala para reduzir a altura
     enemies.add(enemy);
 }
 
@@ -155,6 +156,7 @@ function spawnBonus(scene) {
             break;
     }
     bonus.setVelocityX(-200);
+    bonus.setScale(0.1); // Ajuste a escala para reduzir a altura
     bonuses.add(bonus);
 }
 
@@ -162,6 +164,7 @@ function spawnSpecialEnemy(scene) {
     let specialEnemy = scene.physics.add.sprite(800, 520, 'blackVirus'); // Vírus perigoso
     specialEnemy.setVelocityX(-200);
     specialEnemy.points = -score;
+    specialEnemy.setScale(0.1); // Ajuste a escala para reduzir a altura
     enemies.add(specialEnemy);
 }
 
