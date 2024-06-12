@@ -35,14 +35,14 @@ function preload() {
     this.load.image('ground', 'assets/ground.png');
     this.load.image('player', 'assets/player.png');
     this.load.image('playerJump', 'assets/playerJump.png');
-    this.load.image('greenSquare', 'assets/greenSquare.png');
-    this.load.image('blueSquare', 'assets/blueSquare.png');
-    this.load.image('redSquare', 'assets/redSquare.png');
-    this.load.image('yellowSquare', 'assets/yellowSquare.png');
-    this.load.image('blackSquare', 'assets/blackSquare.png');
-    this.load.image('redCircle', 'assets/redCircle.png');
-    this.load.image('blueCircle', 'assets/blueCircle.png');
-    this.load.image('blackCircle', 'assets/blackCircle.png');
+    this.load.image('greenSquare', 'assets/enemy_1.png');
+    this.load.image('blueSquare', 'assets/enemy_2.png');
+    this.load.image('redSquare', 'assets/enemy_3.png');
+    this.load.image('yellowSquare', 'assets/enemy_4.png');
+    this.load.image('blackSquare', 'assets/enemy_5.png');
+    this.load.image('redCircle', 'assets/b_2.png');
+    this.load.image('blueCircle', 'assets/b_3.png');
+    this.load.image('blackCircle', 'assets/b_4.png');
 }
 
 function create() {
