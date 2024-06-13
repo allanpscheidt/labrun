@@ -72,7 +72,7 @@ function update(time) {
         return;
     }
 
-    ground.tilePositionX += 5;
+    ground.tilePositionX += 2; // Velocidade do chão reduzida
 
     if ((cursors.space.isDown || this.input.activePointer.isDown) && player.body.touching.down) {
         jump();
@@ -100,12 +100,16 @@ function update(time) {
     enemies.children.iterate(function (enemy) {
         if (enemy.x < 0) {
             enemy.destroy();
+        } else {
+            enemy.x -= 2; // Mover inimigos junto com o chão
         }
     });
 
     bonuses.children.iterate(function (bonus) {
         if (bonus.x < 0) {
             bonus.destroy();
+        } else {
+            bonus.x -= 2; // Mover bônus junto com o chão
         }
     });
 
