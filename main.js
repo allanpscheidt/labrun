@@ -117,19 +117,19 @@ function spawnEnemy(scene) {
     let enemy;
     switch (enemyType) {
         case 1:
-            enemy = scene.physics.add.sprite(800, 520, 'greenBacteria'); // E. coli
+            enemy = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'greenBacteria'); // E. coli
             enemy.points = -5;
             break;
         case 2:
-            enemy = scene.physics.add.sprite(800, 520, 'blueBacteria'); // Salmonella
+            enemy = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'blueBacteria'); // Salmonella
             enemy.points = -10;
             break;
         case 3:
-            enemy = scene.physics.add.sprite(800, 520, 'redBacteria'); // Staphylococcus aureus
+            enemy = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'redBacteria'); // Staphylococcus aureus
             enemy.points = -20;
             break;
         case 4:
-            enemy = scene.physics.add.sprite(800, 520, 'yellowBacteria'); // Bacillus cereus
+            enemy = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'yellowBacteria'); // Bacillus cereus
             enemy.points = -50;
             break;
     }
@@ -143,15 +143,15 @@ function spawnBonus(scene) {
     let bonus;
     switch (bonusType) {
         case 1:
-            bonus = scene.physics.add.sprite(800, 520, 'redCircle'); // Lactobacillus
+            bonus = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'redCircle'); // Lactobacillus
             bonus.points = 10;
             break;
         case 2:
-            bonus = scene.physics.add.sprite(800, 520, 'blueCircle'); // Bifidobacterium
+            bonus = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'blueCircle'); // Bifidobacterium
             bonus.points = 30;
             break;
         case 3:
-            bonus = scene.physics.add.sprite(800, 520, 'blackCircle'); // Saccharomyces
+            bonus = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'blackCircle'); // Saccharomyces
             bonus.points = 50;
             break;
     }
@@ -161,7 +161,7 @@ function spawnBonus(scene) {
 }
 
 function spawnSpecialEnemy(scene) {
-    let specialEnemy = scene.physics.add.sprite(800, 520, 'blackVirus'); // Vírus perigoso
+    let specialEnemy = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'blackVirus'); // Vírus perigoso
     specialEnemy.setVelocityX(-200);
     specialEnemy.points = -score;
     specialEnemy.setScale(0.1); // Ajuste a escala para reduzir a altura
