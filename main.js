@@ -35,6 +35,7 @@ function preload() {
     this.load.image('ground', 'assets/ground.png');
     this.load.image('player', 'assets/student.png');
     this.load.image('playerJump', 'assets/studentJump.png');
+    this.load.image('playerDuck', 'assets/studentDuck.png');
     this.load.image('greenBacteria', 'assets/enemy_1.png'); // E. coli (verde)
     this.load.image('blueBacteria', 'assets/enemy_2.png'); // Salmonella (azul)
     this.load.image('redBacteria', 'assets/enemy_3.png'); // Staphylococcus aureus (vermelho)
@@ -51,7 +52,7 @@ function create() {
     player = this.physics.add.sprite(100, 500, 'player').setScale(0.5);
     player.setCollideWorldBounds(true);
 
-    this.input.on('pointerdown', jump, this);
+    this.input.on('pointerdown', handleInput, this);
     cursors = this.input.keyboard.createCursorKeys();
 
     enemies = this.physics.add.group({
@@ -74,11 +75,11 @@ function update(time) {
 
     ground.tilePositionX += 2; // Velocidade do chão reduzida
 
-    if ((cursors.space.isDown || this.input.activePointer.isDown) && player.body.touching.down) {
+    if (cursors.space.isDown && player.body.touching.down) {
         jump();
-    }
-
-    if (player.body.touching.down) {
+    } else if (cursors.down.isDown) {
+        duck();
+    } else if (player.body.touching.down) {
         player.setTexture('player');
     }
 
@@ -180,6 +181,19 @@ function jump() {
     if (player.body.touching.down) {
         player.setVelocityY(-600);
         player.setTexture('playerJump');
+    }
+}
+
+function duck() {
+    player.setTexture('playerDuck');
+    player.setSize(player.width, player.height / 2); // Reduzir o tamanho da altura ao abaixar
+}
+
+function handleInput() {
+    if (player.body.touching.down) {
+        jump();
+    } else if (cursors.down.isDown) {
+        duck();
     }
 }
 
