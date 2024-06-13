@@ -73,12 +73,13 @@ function update(time) {
 
     ground.tilePositionX += 2; // Velocidade do chão reduzida
 
-    if (cursors.space.isDown && player.body.touching.down) {
+    if ((cursors.space.isDown || this.input.activePointer.isDown) && player.body.touching.down) {
         jump();
     } else if (cursors.down.isDown) {
         duck();
     } else if (player.body.touching.down) {
         player.setTexture('player');
+        player.body.setSize(player.width, player.height, false); // Redefinir o tamanho ao retornar à posição normal
     }
 
     if (time > nextSpawnTime) {
@@ -148,15 +149,15 @@ function spawnBonus(scene) {
     let bonus;
     switch (bonusType) {
         case 1:
-            bonus = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'redCircle'); // Lactobacillus
+            bonus = scene.physics.add.sprite(800, 500, 'redCircle'); // Lactobacillus
             bonus.points = 10;
             break;
         case 2:
-            bonus = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'blueCircle'); // Bifidobacterium
+            bonus = scene.physics.add.sprite(800, 500, 'blueCircle'); // Bifidobacterium
             bonus.points = 30;
             break;
         case 3:
-            bonus = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'blackCircle'); // Saccharomyces
+            bonus = scene.physics.add.sprite(800, 500, 'blackCircle'); // Saccharomyces
             bonus.points = 50;
             break;
     }
@@ -173,8 +174,10 @@ function jump() {
 }
 
 function duck() {
-    player.setTexture('playerDuck');
-    player.setSize(player.width, player.height / 2); // Reduzir o tamanho da altura ao abaixar
+    if (player.body.touching.down) {
+        player.setTexture('playerDuck');
+        player.body.setSize(player.width, player.height / 2, false); // Reduzir o tamanho da altura ao abaixar
+    }
 }
 
 function handleInput() {
