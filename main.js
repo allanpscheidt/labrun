@@ -48,7 +48,7 @@ function preload() {
 function create() {
     ground = this.add.tileSprite(400, 570, 800, 60, 'ground');
 
-    player = this.physics.add.sprite(100, 450, 'player');
+    player = this.physics.add.sprite(100, 500, 'player').setScale(0.5);
     player.setCollideWorldBounds(true);
 
     this.input.on('pointerdown', jump, this);
