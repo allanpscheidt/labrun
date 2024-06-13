@@ -84,12 +84,12 @@ function update(time) {
     }
 
     if (time > nextEnemyTime) {
-        nextEnemyTime = time + 2000;
+        nextEnemyTime = time + 2000; // Aumentar o intervalo para evitar sobreposição
         spawnEnemy(this);
     }
 
     if (time > nextBonusTime) {
-        nextBonusTime = time + 10000;
+        nextBonusTime = time + 10000; // Aumentar o intervalo para evitar sobreposição
         spawnBonus(this);
     }
 
@@ -122,6 +122,8 @@ function update(time) {
 }
 
 function spawnEnemy(scene) {
+    if (Math.random() < 0.5) return; // 50% de chance de gerar um inimigo para reduzir a sobreposição
+
     let enemyType = Phaser.Math.Between(1, 4);
     let enemy;
     switch (enemyType) {
@@ -148,6 +150,8 @@ function spawnEnemy(scene) {
 }
 
 function spawnBonus(scene) {
+    if (Math.random() < 0.3) return; // 30% de chance de gerar um bônus para reduzir a sobreposição
+
     let bonusType = Phaser.Math.Between(1, 3);
     let bonus;
     switch (bonusType) {
@@ -170,6 +174,8 @@ function spawnBonus(scene) {
 }
 
 function spawnSpecialEnemy(scene) {
+    if (Math.random() < 0.1) return; // 10% de chance de gerar um inimigo especial para reduzir a sobreposição
+
     let specialEnemy = scene.physics.add.sprite(800, Phaser.Math.Between(100, 500), 'blackVirus'); // Vírus perigoso
     specialEnemy.setVelocityX(-200);
     specialEnemy.points = -score;
