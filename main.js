@@ -54,8 +54,12 @@ function create() {
     this.input.on('pointerdown', jump, this);
     cursors = this.input.keyboard.createCursorKeys();
 
-    enemies = this.physics.add.group();
-    bonuses = this.physics.add.group();
+    enemies = this.physics.add.group({
+        allowGravity: false
+    });
+    bonuses = this.physics.add.group({
+        allowGravity: false
+    });
 
     scoreText = this.add.text(400, 50, 'Score: 100', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
 
